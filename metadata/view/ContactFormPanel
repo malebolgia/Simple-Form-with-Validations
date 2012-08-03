@@ -1,0 +1,292 @@
+{
+    "id": "ExtBox1-ext-gen9066",
+    "type": "formpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "id": "contactform",
+        "designer|userClassName": "ContactFormPanel"
+    },
+    "customConfigs": [],
+    "designerId": "c5a1a484-99a1-4a91-b130-8dcb43649166",
+    "$viewOrder": 0,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen5248",
+            "type": "toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "id": "ContactToolBar",
+                "designer|userClassName": "MyToolbar",
+                "container|pack": "center"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen5425",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "ui": "back",
+                        "text": "Cancel",
+                        "designer|userClassName": "MyButton"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen2459",
+                    "type": "label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "html": "<div style=\"padding: 0px 30px; color: #fdd309\"> Simple Form</div>",
+                        "tpl": null,
+                        "ui": "dark",
+                        "designer|userClassName": "MyLabel"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen5895",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "SubmitContact",
+                        "style": null,
+                        "ui": "forward",
+                        "iconAlign": null,
+                        "text": "Submit",
+                        "designer|userClassName": "MyButton1"
+                    },
+                    "customConfigs": [],
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen4312",
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onSubmitContactTap",
+                                "implHandler": [
+                                    "var values = this.getValues();\r",
+                                    "var contactData = Ext.create('MyApp.model.ContactForm', {\r",
+                                    "    fullname: values.fullname,\r",
+                                    "    email: values.email,\r",
+                                    "    phone: values.phone,\r",
+                                    "    inquiry: values.inquiry  \r",
+                                    "}),\r",
+                                    "errs = contactData.validate(),\r",
+                                    "msg = '';\r",
+                                    "\r",
+                                    "if (!errs.isValid()) {\r",
+                                    "    errs.each(function (err) {\r",
+                                    "        msg += Ext.String.capitalize(err.getField()) + \" \" + err.getMessage() + '<br/>';\r",
+                                    "    });\r",
+                                    "    Ext.Msg.alert('ERROR', msg);\r",
+                                    "} else {\r",
+                                    "    Ext.Ajax.request({\r",
+                                    "        url: 'inquiry.php',\r",
+                                    "        params: {\r",
+                                    "            fullname: values.fullname,\r",
+                                    "            gender: values.gender,\r",
+                                    "            email: values.email,\r",
+                                    "            phone: values.phone,\r",
+                                    "            inquiry: values.inquiry \r",
+                                    "        },\r",
+                                    "        method: 'POST',\r",
+                                    "        success: this.handleSuccess,\r",
+                                    "        failure: this.handleError\r",
+                                    "    });\r",
+                                    "\r",
+                                    "} // if\r",
+                                    "\r",
+                                    "\r",
+                                    ""
+                                ],
+                                "name": "tap",
+                                "designer|userClassName": "onSubmitContactTap"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ExtBox1-ext-gen2877",
+            "type": "fieldset",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Contact",
+                "designer|userClassName": "MyFieldSet"
+            },
+            "customConfigs": [],
+            "expanded": false,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2886",
+                    "type": "textfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": null,
+                        "label": "Fullname",
+                        "name": "fullname",
+                        "designer|userClassName": "MyTextField"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen5007",
+                    "type": "selectfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Gender",
+                        "name": "gender",
+                        "options": "[\n            {text: 'Male',  value: 'male'},\n            {text: 'Female', value: 'female'}\n        ]",
+                        "designer|userClassName": "MySelectField"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen3907",
+                    "type": "emailfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Email",
+                        "name": "email",
+                        "placeHolder": "email@example.com",
+                        "designer|userClassName": "MyEmailField"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen4101",
+                    "type": "numberfield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Phone",
+                        "name": "phone",
+                        "designer|userClassName": "MyNumberField"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                },
+                {
+                    "id": "ExtBox1-ext-gen4515",
+                    "type": "textareafield",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 138,
+                        "width": 281,
+                        "label": "Inquiry",
+                        "name": "inquiry",
+                        "designer|userClassName": "MyTextArea"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        },
+        {
+            "id": "ExtBox1-ext-gen11984",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "handleSuccess",
+                "designer|params": [
+                    "response, opts"
+                ],
+                "implHandler": [
+                    "var jsonData = Ext.decode(response.responseText);\r",
+                    "console.log(jsonData);\r",
+                    "//console.log(response.responseText);\r",
+                    ""
+                ],
+                "designer|userClassName": "handleSuccess"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen12423",
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "handleError",
+                "designer|params": [
+                    "response, opts"
+                ],
+                "implHandler": [
+                    "console.log('server-side failure with status code ' + response.status);\r",
+                    ""
+                ],
+                "designer|userClassName": "handleError"
+            },
+            "customConfigs": [],
+            "expanded": true
+        }
+    ]
+}
